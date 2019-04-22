@@ -1,0 +1,135 @@
+Question 1: Return ALL the data in the 'movies' table.
+SQL (including query to test result):
+    SELECT * FROM movies;
+Terminal response:
+id |                title                | year | show_time
+----+-------------------------------------+------+-----------
+ 1 | Iron Man                            | 2008 | 19:45
+ 2 | The Incredible Hulk                 | 2008 | 23:20
+ 3 | Iron Man 2                          | 2010 | 18:10
+ 4 | Thor                                | 2011 | 22:35
+ 5 | Captain America: The First Avenger  | 2011 | 22:30
+ 6 | Avengers Assemble                   | 2012 | 21:55
+ 7 | Iron Man 3                          | 2013 | 15:00
+ 8 | Thor: The Dark World                | 2013 | 12:35
+ 9 | Batman Begins                       | 2005 | 16:50
+10 | Captain America: The Winter Soldier | 2014 | 20:35
+11 | Guardians of the Galaxy             | 2014 | 14:25
+12 | Avengers: Age of Ultron             | 2015 | 14:10
+13 | Ant-Man                             | 2015 | 17:10
+14 | Captain America: Civil War          | 2016 | 23:30
+15 | Doctor Strange                      | 2016 | 16:15
+16 | Guardians of the Galaxy 2           | 2017 | 19:15
+17 | Spider-Man: Homecoming              | 2017 | 18:45
+18 | Thor: Ragnarok                      | 2017 | 13:35
+19 | Black Panther                       | 2018 | 22:05
+(19 rows)
+
+Question 2: Return ONLY the name column from the 'people' table
+SQL (including query to test result):
+    SELECT name FROM people;
+Terminal response:
+name
+-----------------
+James Berry
+Kris Brough
+Matthew Beeston
+Reka Forgacs
+Euan Gilmour
+Pawel Gorny
+Hamish King
+Roderick King
+Ben Sharp
+Donald Trump
+Ros Ulldemolins
+(11 rows)
+
+Question 3: Oops! Someone at CodeClan spelled Rose's name wrong! Change it to reflect the proper spelling ('Rose' not 'Ros').
+SQL (including query to test result):
+    UPDATE people
+    SET name = 'Rose Ulldemolins'
+    WHERE id = 11;
+    SELECT name FROM people WHERE id = 11;
+Terminal response:
+UPDATE 1
+       name
+------------------
+ Rose Ulldemolins
+(1 row)
+
+Question 4: Return ONLY your name from the 'people' table.
+SQL (including query to test result):
+    SELECT name FROM people WHERE NAME LIKE 'Ham%';
+Terminal response:
+name
+-------------
+Hamish King
+(1 row)
+
+Question 5: The cinema is showing 'Batman Begins', but Batman is DC, not Marvel! Delete the entry from the 'movies' table.
+SQL (including query to test result):
+    DELETE FROM movies
+    WHERE id = 9;
+    SELECT * FROM movies WHERE TITLE = 'Batman Begins';
+Terminal response:
+DELETE 1
+ id | title | year | show_time
+----+-------+------+-----------
+(0 rows)
+
+Question 6: Create a new entry in the 'people' table with the name of one of the instructors.
+SQL (including query to test result):
+    INSERT INTO people (name) VALUES ('Keith Douglas');
+    SELECT * FROM people WHERE id = 12;
+Terminal response:
+INSERT 0 1
+ id |     name
+----+---------------
+ 12 | Keith Douglas
+(1 row)
+
+
+Question 7: Donald Trump has decided to hijack our movie evening, Remove him from the table of people.
+SQL (including query to test result):
+    DELETE FROM people WHERE NAME LIKE '%rump%';
+    SELECT COUNT(*) FROM people; -- expect 11
+Terminal response:
+DELETE 1
+ count
+-------
+    11
+(1 row)
+
+Question 8: The cinema has just heard that they will be holding an exclusive midnight showing of 'Avengers: Infinity War'!! Create a new entry in the 'movies' table to reflect this.
+SQL (including query to test result):
+    INSERT INTO movies (title, year, show_time) VALUES ('Avengers: Infinity War', 2018, '00:00');
+    SELECT * FROM movies WHERE TITLE LIKE 'Aveng%';
+Terminal response:
+INSERT 0 1
+ id |          title          | year | show_time
+----+-------------------------+------+-----------
+  6 | Avengers Assemble       | 2012 | 21:55
+ 12 | Avengers: Age of Ultron | 2015 | 14:10
+ 20 | Avengers: Infinity War  | 2018 | 00:00
+(3 rows)
+
+
+Question 9: The cinema would also like to make the Guardians movies a back to back feature. Find out the show time of "Guardians of the Galaxy" and set the show time of "Guardians of the Galaxy 2" to start two hours later.
+SQL (including query to test result):
+    SELECT show_time FROM movies WHERE id = 11; -- expect 14:25
+    UPDATE movies
+    SET show_time = '16:25'
+    WHERE id = 16;
+    SELECT * FROM movies WHERE TITLE LIKE 'Guard%';
+Terminal response:
+show_time
+-----------
+14:25
+(1 row)
+
+UPDATE 1
+id |           title           | year | show_time
+----+---------------------------+------+-----------
+11 | Guardians of the Galaxy   | 2014 | 14:25
+16 | Guardians of the Galaxy 2 | 2017 | 16:25
+(2 rows)
